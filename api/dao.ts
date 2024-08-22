@@ -4,8 +4,12 @@ import axiosIntance from "~/config/axiosInstance";
 import { Pokemon, Type } from "~/models";
 
 export const Dao = {
-  getPokemons: (): Promise<AxiosResponse<Pokemon[]>> => {
-    return axiosIntance.get("/pokemons");
+  getPokemons: (search?: string | number): Promise<AxiosResponse<Pokemon[]>> => {
+    let name = "";
+    if (search) {
+      name = `&name=${search}`;
+    }
+    return axiosIntance.get(`/pokemons${name}`);
   },
   showPokemon: (id: number | string): Promise<AxiosResponse<Pokemon>> => {
     return axiosIntance.get(`/pokemons/${id}`);
