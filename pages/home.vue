@@ -1,14 +1,24 @@
 <template>
-  <div>
-    <h1>Lista de Pokémon</h1>
-    <ul>
-      <li v-for="pokemon in pokemons" :key="pokemon.id">
-        <img :src="pokemon.img" :alt="pokemon.name" width="50" />
-        {{ pokemon.name }}
-      </li>
-    </ul>
+  <div class="container">
+    <h1 class="my-4">Lista de Pokémon</h1>
+    <b-row>
+      <b-col v-for="pokemon in pokemons" :key="pokemon.id" cols="12" md="6" lg="4" class="mb-4">
+        <b-card :title="pokemon.name" img-alt="Image" :img-src="pokemon.img">
+          <b-card-text>
+            <strong>Tipos:</strong>
+            <ul>
+              <li v-for="type in pokemon.types" :key="type">
+                {{ type }}
+              </li>
+            </ul>
+          </b-card-text>
+          <b-button variant="primary">Detalles</b-button>
+        </b-card>
+      </b-col>
+    </b-row>
   </div>
 </template>
+
 
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -39,18 +49,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-}
-
-li {
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-}
-
-img {
-  margin-right: 10px;
 }
 </style>
