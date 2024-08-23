@@ -129,7 +129,7 @@ export const actions: ActionTree<RootState, RootState> = {
     }
   },
 
-  async removePokemon({ commit },id : string | number) {
+  async removePokemon({ commit }, id: string | number) {
     try {
       const response = await Repository.deletePokemon(id);
       const deletedPokemon = response.data.pokemon;
@@ -142,4 +142,10 @@ export const actions: ActionTree<RootState, RootState> = {
       }
     }
   },
+};
+
+export const getters: GetterTree<RootState, RootState> = {
+  pokemon: (state) => state.pokemon,
+  pokemons: (state) => state.pokemons,
+  types: (state) => state.types,
 };
