@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1 class="my-4">Lista de Pokémon</h1>
+    <nuxt-link to="/create" class="btn btn-primary mb-4">Crear Pokémon</nuxt-link>
     <b-row>
       <b-col v-for="pokemon in pokemons" :key="pokemon.id" cols="12" md="6" lg="4" class="mb-4">
         <b-card :title="pokemon.name" img-alt="Image" :img-src="pokemon.img">
@@ -19,18 +20,15 @@
   </div>
 </template>
 
-
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 
 export default defineComponent({
   async fetch({ store }) {
-    const pokemons = store.state.pokemons;
-    if (!pokemons.lengh) {
+    if (!store.state.pokemons.length) {
       await store.dispatch('getPokemons');
     }
-
   },
   computed: {
     ...mapGetters({
