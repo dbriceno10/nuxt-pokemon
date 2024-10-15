@@ -37,7 +37,12 @@ export default defineComponent({
   },
   created() {
     console.log('created')
-    console.log(this.pokemons)
+    if (this.pokemons && Array.isArray(this.pokemons)) {
+      this.pokemons?.forEach((pokemon) => {
+        console.log({ ...pokemon })
+      })
+    }
+
   },
   unmounted() {
     console.log('unmounted')

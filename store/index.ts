@@ -17,7 +17,7 @@ export const state = (): RootState => ({
 
 export const mutations: MutationTree<RootState> = {
   setTypes(state, types: Type[]) {
-    state.types = types;
+    state.types = types?.map((e) => e.name);
   },
 
   setPokemons(state, pokemons: Pokemon[]) {
